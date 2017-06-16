@@ -1,0 +1,17 @@
+<md-card>
+  <md-card-title>Bark Meter</md-card-title>
+  <md-card-content>
+      <md-progress-bar
+        [color]="'primary'"
+        [mode]="'determinate'"
+        [value]="decibel">
+      </md-progress-bar>
+  </md-card-content>
+  <md-card-actions>
+    <button
+      md-raised-button
+      [color]="'primary'"
+      (click)="increaseCount()">Sssh! No Barking!</button>
+    <span><strong>Played {{playCount}} many times!</strong></span>
+  </md-card-actions>
+</md-card>

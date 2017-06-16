@@ -1,0 +1,11 @@
+<md-toolbar [color]="'primary'">
+  <span>Spunky Tracker</span>
+</md-toolbar>
+<md-grid-list [cols]="1" [rowHeight]="'200px'" [gutterSize]="20">
+  <md-grid-tile [colspan]="1" [rowspan]="1">
+    <app-bark-meter></app-bark-meter>
+  </md-grid-tile>
+  <md-grid-tile [colspan]="1" [rowspan]="1">
+    <app-location-meter></app-location-meter>
+  </md-grid-tile>
+</md-grid-list>

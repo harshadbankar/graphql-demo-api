@@ -6,7 +6,9 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || '3000';
 const app = express();
 
-app.use('/graphql', bodyParser.json(), graphqlExpress((req) => {
+const cors = require('cors');
+
+app.use('/raspberry-api', bodyParser.json(), cors(), graphqlExpress((req) => {
     return {
         schema: schema,
         formatError: (err) => ({
@@ -17,20 +19,24 @@ app.use('/graphql', bodyParser.json(), graphqlExpress((req) => {
 }));
 
 app.use('/graphiql', graphiqlExpress({
-    endpointURL: '/graphql',
-    query: `query showProjectDetails {
-  project(key: "some-key") {
-    repository {
-      name
-      public
+    endpointURL: '/raspberry-api',
+    query: `query raspberryResponse {
+        microphone {
+            decibel
+        }
+        location {
+            latitude
+            longitude
+        }
     }
-    builds {
-      name
-      state
-      number
+
+    mutation countPlayincrease ($playType: String!) {
+	
+         countPlay (playType: $playType) {
+            value
+         }
     }
-  }
-}`
+    `
 }));
 
 app.listen(port, () => {
